@@ -63,6 +63,32 @@
             margin-right: -170px; /* Adjust to move the logo to the left */
             margin-top: -100px; /* Move the logo upward */
         }
+        /* Navigation Menu Styles */
+        nav {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 15px; /* Space between menu items */
+            list-style-type: none;
+            padding: 0;
+        }
+        .menu li {
+            display: inline;
+        }
+        .menu a {
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            padding: 10px 20px;
+            text-transform: uppercase; /* Make text uppercase */
+            transition: color 0.3s ease;
+        }
+        .menu a:hover {
+            color: #0056b3; /* Change text color on hover */
+        }
     </style>
 </head>
 <body>
@@ -86,6 +112,21 @@
             </div>
         </div>
     </header>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <ul class="menu">
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">ABOUT</a></li>
+            <li><a href="#">NEWS</a></li>
+            <li><a href="#">ISSUANCES</a></li>
+            <li><a href="#">QMS</a></li>
+            <li><a href="#">PROCUREMENT</a></li>
+            <li><a href="#">LEARNING RESOURCES</a></li>
+            <li><a href="#">RESEARCH</a></li>
+            <li><a href="#">CONTACT US</a></li>
+        </ul>
+    </nav>
 
     <!-- JavaScript for current time -->
     <script>
