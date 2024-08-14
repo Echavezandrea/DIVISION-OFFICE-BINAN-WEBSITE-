@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Landing Page</title>
     <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
         /* Header Styles */
         header {
             background: url("{% static 'images/backg.png' %}") no-repeat center center;
@@ -89,6 +94,13 @@
         .menu a:hover {
             color: #0056b3; /* Change text color on hover */
         }
+        /* Horizontal Line Style */
+        .divider {
+            width: 90%; /* Adjust width as needed */
+            height: 2px;
+            background-color: #000; /* Black color for the line */
+            margin: 20px auto; /* Center the line and add space above/below */
+        }
     </style>
 </head>
 <body>
@@ -127,6 +139,9 @@
             <li><a href="#">CONTACT US</a></li>
         </ul>
     </nav>
+
+    <!-- Divider Line -->
+    <div class="divider"></div>
 
     <!-- JavaScript for current time -->
     <script>
