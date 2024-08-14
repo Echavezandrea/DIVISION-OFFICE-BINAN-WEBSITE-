@@ -6,12 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Landing Page</title>
     <style>
-        /* Header Styles */
+
+
+        /* Global Styles para mag fill in ang header at footer*/
         html, body {
             margin: 0;
             padding: 0;
             width: 100%;
+            height: 100%; /* Ensures the body takes the full height of the viewport */
+            display: flex;
+            flex-direction: column; /* Allows the footer to be pushed to the bottom */
         }
+
+        /* Header Styles */
         header {
             background: url("{% static 'images/backg.png' %}") no-repeat center center;
             background-size: cover;
@@ -21,7 +28,8 @@
         .container-fluid {
             max-width: 1200px;
             margin: 0 auto;
-            padding-left: 0;
+            padding-left: 20px; /* Add padding to align with footer */
+            padding-right: 20px; /* Add padding to align with footer */
         }
         .header-row {
             display: flex;
@@ -103,8 +111,8 @@
         }
         /* Placeholder for Body Content */
         .body-placeholder {
-            height: 500px; /* Adjust height as needed */
-            background-color: #f0f0f0; /* Light grey background to visualize space */
+            flex: 1; /* Makes the body section take up remaining space */
+            background-color: #f0f0f0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -115,29 +123,23 @@
         footer {
             background: url("{% static 'images/footer.png' %}") no-repeat center center;
             background-size: cover;
-            padding: 20px 0;
+            padding: 20px;
             color: #ffffff;
             font-size: 14px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
+            width: 100%;
         }
         .footer-container {
             max-width: 1200px;
-            width: 100%;
+            margin: 0 auto;
+            padding-left: 20px; /* Add padding to align with header */
+            padding-right: 20px; /* Add padding to align with header */
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
-            margin-bottom: 20px;
-        }
-        .footer-logo {
-            width: 150px;
-            margin-bottom: 10px;
         }
         .footer-section {
             flex: 1;
-            min-width: 500px;
+            min-width: 250px;
             margin-bottom: 20px;
         }
         .footer-section h4 {
@@ -167,14 +169,11 @@
         }
         .copyright {
             text-align: center;
-            background-color: #020059; /* Background color for the text */
-            padding: 0px; /* Padding to create space around the text */
-            color: #ffffff; /* Font color */
-            border-radius: 5px; /* Optional: Rounded corners */
-            display: inline-block;
+            background-color: #020059;
+            padding: 10px;
+            color: #ffffff;
+            border-radius: 5px;
             width: 100%;
-            max-width: 2100px;
-            margin: 0 auto;
         }
     </style>
 </head>
@@ -225,14 +224,14 @@
 
     <!-- Footer Section -->
     <footer>
-        <<div class="footer-container">
-        <!-- CONTACT ADDRESSES -->
-        <div class="footer-section">
-            <p>For Contact:</p>
-            <p><img src="{% static 'images/email-icon.png' %}" alt="Email" class="contact-icon"> deped.binancity@deped.gov.ph</p>
-            <p><img src="{% static 'images/telephone-icon.png' %}" alt="Telephone" class="contact-icon"> 511-4143 | 511-8620</p>
-            <p><img src="{% static 'images/telephone-icon.png' %}" alt="Telephone" class="contact-icon"> 511-8746 | 511-4191</p>
-        </div>
+        <div class="footer-container">
+            <!-- Contact Addresses -->
+            <div class="footer-section">
+                <p>For Contact:</p>
+                <p><img src="{% static 'images/email-icon.png' %}" alt="Email" class="contact-icon"> deped.binancity@deped.gov.ph</p>
+                <p><img src="{% static 'images/telephone-icon.png' %}" alt="Telephone" class="contact-icon"> 511-4143 | 511-8620</p>
+                <p><img src="{% static 'images/telephone-icon.png' %}" alt="Telephone" class="contact-icon"> 511-8746 | 511-4191</p>
+            </div>
 
             <!-- Social Media Links -->
             <div class="footer-section">
@@ -245,7 +244,7 @@
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; DEPED|DIVISION BINAN</p>
+            <p>&copy; DEPED | DIVISION BINAN</p>
         </div>
     </footer>
 
