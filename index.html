@@ -42,16 +42,20 @@
         }
         .header-text h1 {
             font-family: 'Amasis MT Pro Black', serif;
-            margin-bottom: 5px;
+            font-size: 2.3em;
+            margin-bottom: 3px;
         }
         .header-text h2 {
             font-family: 'Bookman Old Style', serif;
+            font-size: 1.5em;
+            margin-top: 3px;
+            margin-bottom: 3px;
         }
         .header-hr {
-            width: 490px;
+            width: 550px;
             height: 3px;
             background-color: white;
-            margin: 4px 0;
+            margin: 5px 0;
         }
         .header-logo {
             width: 170px;
@@ -59,6 +63,7 @@
             margin-left: 0;
         }
         #pstContainer {
+            font-size: 1.1em;
             margin-left: 0;
             text-align: right;
             color: white;
@@ -66,6 +71,9 @@
             display: flex;
             align-items: center;
             gap: 20px;
+        }
+        #pst {
+            font-size: 1.1em;   /* Increase font size */
         }
         .pst-logo {
             width: 170px;
@@ -129,6 +137,9 @@
             color: #ffffff;
             font-size: 14px;
             width: 100%;
+            box-sizing: border-box;
+            position: relative;
+            padding-bottom: 50px; /* Added space for copyright */
         }
         .footer-container {
             max-width: 1200px;
@@ -143,22 +154,36 @@
             flex: 1;
             min-width: 250px;
             margin-bottom: 20px;
+            position: relative; /* Added to handle positioning */
+            z-index: 1; /* Ensure it stays above the background */
         }
         /* Contact Info Specific Styles */
         .contact-info {
-            font-size: 17px; /* Increased font size by 3 points */
-            text-align: left; /* Align content to the left */
-            margin-left: -20px; /* Adjusted margin to move content more to the left */
+            font-size: 17px;
+            text-align: left;
+            margin-left: -60px;
+            position: relative; /* Added to handle positioning */
+            z-index: 1; /* Ensure it stays above the background */
+        }
+        .contact-info p {
+            margin-bottom: 10px; /* Add margin for spacing between paragraphs */
+        }
+        .contact-icon {
+            vertical-align: middle; /* Ensure the icon aligns properly with text */
+            margin-right: 5px; /* Space between icon and text */
         }
         /* Social Media Specific Styles */
         .social-media {
-            text-align: right; /* Align content to the right */
+            text-align: right;
+            margin-right: -60px;
+            position: relative;
+            z-index: 1; /* Ensure it stays above the background */
         }
         .social-media h4 {
             margin-bottom: 10px;
             font-size: 20px;
             font-weight: bold;
-            color: #343a40;
+            color: #ffffff; /* Change color to white */
         }
         .footer-section p,
         .footer-section a {
@@ -174,7 +199,7 @@
         .social-icons {
             display: flex;
             gap: 10px;
-            justify-content: flex-end; /* Align icons to the right */
+            justify-content: flex-end;
         }
         .social-icons img {
             width: 24px;
@@ -187,6 +212,11 @@
             color: #ffffff;
             border-radius: 5px;
             width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            box-sizing: border-box;
+            margin: 0;
         }
     </style>
 </head>
@@ -242,8 +272,8 @@
             <div class="footer-section contact-info">
                 <p>For Contact:</p>
                 <p><img src="{% static 'images/email-icon.png' %}" alt="Email" class="contact-icon"> deped.binancity@deped.gov.ph</p>
-                <p><img src="{% static 'images/telephone-icon.png' %}" alt="Telephone" class="contact-icon"> 511-4143 | 511-8620</p>
-                <p><img src="{% static 'images/telephone-icon.png' %}" alt="Telephone" class="contact-icon"> 511-8746 | 511-4191</p>
+                <p><img src="{% static 'images/telephone-icon.png' %}" alt="Telephone" class="contact-icon"> 511 - 4143 | 511 - 8620</p>
+                <p><img src="{% static 'images/telephone-icon.png' %}" alt="Telephone" class="contact-icon"> 511 - 8746 | 511 - 4191</p>
             </div>
 
             <!-- Social Media Links -->
@@ -261,7 +291,7 @@
         </div>
     </footer>
 
-        <!-- JavaScript for current time -->
+    <!-- JavaScript for current time -->
     <script>
         function updateTime() {
             const now = new Date();
