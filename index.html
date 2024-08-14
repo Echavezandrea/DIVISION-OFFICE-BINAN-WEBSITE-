@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Landing Page</title>
     <style>
+        /* Header Styles */
         html, body {
             margin: 0;
             padding: 0;
             width: 100%;
         }
-        /* Header Styles */
         header {
             background: url("{% static 'images/backg.png' %}") no-repeat center center;
             background-size: cover;
@@ -21,18 +21,18 @@
         .container-fluid {
             max-width: 1200px;
             margin: 0 auto;
-            padding-left: 0; /* Remove left padding to align content more to the left */
+            padding-left: 0;
         }
         .header-row {
             display: flex;
             align-items: center;
-            gap: 30px; /* Space between elements */
-            margin-left: -200px; /* Move the whole row further to the left */
+            gap: 30px;
+            margin-left: -200px;
         }
         .header-text {
             text-align: left;
-            flex: 1; /* Ensures the text takes up available space */
-            margin-left: 0; /* Remove margin to move text further left */
+            flex: 1;
+            margin-left: 0;
         }
         .header-text h1 {
             font-family: 'Amasis MT Pro Black', serif;
@@ -50,23 +50,23 @@
         .header-logo {
             width: 170px;
             height: 190px;
-            margin-left: 0; /* Remove margin to move logo further left */
+            margin-left: 0;
         }
         #pstContainer {
-            margin-left: 0; /* Adjust to align PST section as needed */
-            text-align: right; /* Align text to the right */
-            color: white; /* Ensure the time is visible on the background */
-            margin-top: 100px; /* Move the PST section downward */
+            margin-left: 0;
+            text-align: right;
+            color: white;
+            margin-top: 100px;
             display: flex;
-            align-items: center; /* Align items vertically */
-            gap: 20px; /* Increase space between PST and logo */
+            align-items: center;
+            gap: 20px;
         }
         .pst-logo {
-            width: 170px; /* Match the size of the header logo */
-            height: 170px; /* Maintain aspect ratio if needed */
-            margin-left: auto; /* Push the logo to the right */
-            margin-right: -170px; /* Adjust to move the logo to the left */
-            margin-top: -100px; /* Move the logo upward */
+            width: 170px;
+            height: 170px;
+            margin-left: auto;
+            margin-right: -170px;
+            margin-top: -100px;
         }
         /* Navigation Menu Styles */
         nav {
@@ -76,7 +76,7 @@
         .menu {
             display: flex;
             justify-content: center;
-            gap: 15px; /* Space between menu items */
+            gap: 15px;
             list-style-type: none;
             padding: 0;
         }
@@ -88,18 +88,93 @@
             color: black;
             font-size: 18px;
             padding: 10px 20px;
-            text-transform: uppercase; /* Make text uppercase */
+            text-transform: uppercase;
             transition: color 0.3s ease;
         }
         .menu a:hover {
-            color: #0056b3; /* Change text color on hover */
+            color: #0056b3;
         }
         /* Horizontal Line Style */
         .divider {
-            width: 90%; /* Adjust width as needed */
+            width: 90%;
             height: 2px;
-            background-color: #000; /* Black color for the line */
-            margin: 20px auto; /* Center the line and add space above/below */
+            background-color: #000;
+            margin: 20px auto;
+        }
+        /* Placeholder for Body Content */
+        .body-placeholder {
+            height: 500px; /* Adjust height as needed */
+            background-color: #f0f0f0; /* Light grey background to visualize space */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #555;
+            font-size: 24px;
+        }
+        /* Footer Styles */
+        footer {
+            background: url("{% static 'images/footer.png' %}") no-repeat center center;
+            background-size: cover;
+            padding: 20px 0;
+            color: #ffffff;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .footer-container {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .footer-logo {
+            width: 150px;
+            margin-bottom: 10px;
+        }
+        .footer-section {
+            flex: 1;
+            min-width: 500px;
+            margin-bottom: 20px;
+        }
+        .footer-section h4 {
+            margin-bottom: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #343a40;
+        }
+        .footer-section p,
+        .footer-section a {
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+        .footer-section a:hover {
+            color: #d4d4d4;
+        }
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+        .social-icons img {
+            width: 24px;
+            height: 24px;
+        }
+        .copyright {
+            text-align: center;
+            background-color: #020059; /* Background color for the text */
+            padding: 0px; /* Padding to create space around the text */
+            color: #ffffff; /* Font color */
+            border-radius: 5px; /* Optional: Rounded corners */
+            display: inline-block;
+            width: 100%;
+            max-width: 2100px;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -143,6 +218,37 @@
     <!-- Divider Line -->
     <div class="divider"></div>
 
+    <!-- Placeholder for Body Content -->
+    <div class="body-placeholder">
+        <p>Body Content Goes Here</p>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <!-- Logo and Address -->
+            <div class="footer-section">
+                <img src="{% static 'images/logo.png' %}" alt="Logo" class="footer-logo">
+                <p>123 Main Street, Biñan City, Laguna</p>
+                <p>Phone: (02) 123-4567</p>
+                <p>Email: info@depedbinan.gov.ph</p>
+            </div>
+
+            <!-- Social Media Links -->
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-icons">
+                    <a href="#"><img src="{% static 'images/facebook-icon.png' %}" alt="Facebook"></a>
+                    <a href="#"><img src="{% static 'images/twitter-icon.png' %}" alt="Twitter"></a>
+                    <a href="#"><img src="{% static 'images/instagram-icon.png' %}" alt="Instagram"></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; DEPED|DIVISION BINAN</p>
+        </div>
+    </footer>
+
     <!-- JavaScript for current time -->
     <script>
         function updateTime() {
@@ -155,8 +261,6 @@
         setInterval(updateTime, 1000); // Update the time every second
         updateTime(); // Initial call to display time immediately
     </script>
-
-    <!-- Other content of the page -->
 
 </body>
 </html>
