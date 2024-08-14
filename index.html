@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Landing Page</title>
+    <style>
+        /* Header Styles */
+        header {
+            background: url("{% static 'images/backg.png' %}") no-repeat center center;
+            background-size: cover;
+            padding: 20px;
+            color: white;
+        }
+        .container-fluid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 0; /* Remove left padding to align content more to the left */
+        }
+        .header-row {
+            display: flex;
+            align-items: center;
+            gap: 30px; /* Space between elements */
+            margin-left: -200px; /* Move the whole row further to the left */
+        }
+        .header-text {
+            text-align: left;
+            flex: 1; /* Ensures the text takes up available space */
+            margin-left: 0; /* Remove margin to move text further left */
+        }
+        .header-text h1 {
+            font-family: 'Amasis MT Pro Black', serif;
+            margin-bottom: 5px;
+        }
+        .header-text h2 {
+            font-family: 'Bookman Old Style', serif;
+        }
+        .header-hr {
+            width: 490px;
+            height: 3px;
+            background-color: white;
+            margin: 4px 0;
+        }
+        .header-logo {
+            width: 170px;
+            height: 190px;
+            margin-left: 0; /* Remove margin to move logo further left */
+        }
+        #pstContainer {
+            margin-left: 0; /* Adjust to align PST section as needed */
+            text-align: right; /* Align text to the right */
+            color: white; /* Ensure the time is visible on the background */
+            margin-top: 100px; /* Move the PST section downward */
+            display: flex;
+            align-items: center; /* Align items vertically */
+            gap: 20px; /* Increase space between PST and logo */
+        }
+        .pst-logo {
+            width: 170px; /* Match the size of the header logo */
+            height: 170px; /* Maintain aspect ratio if needed */
+            margin-left: auto; /* Push the logo to the right */
+            margin-right: -170px; /* Adjust to move the logo to the left */
+            margin-top: -100px; /* Move the logo upward */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container-fluid">
+            <div class="header-row">
+                <img src="{% static 'images/logo.png' %}" alt="Logo" class="header-logo">
+                <div class="header-text">
+                    <h1><strong>DEPARTMENT OF EDUCATION</strong></h1>
+                    <hr class="header-hr">
+                    <h2><strong>City Schools Division of Biñan</strong></h2>
+                </div>
+                <div id="pstContainer">
+                    <p>Philippines Standard Time:<br>
+                        <span id="pst"></span>
+                    </p>
+                    <img src="{% static 'images/trans.png' %}" alt="Additional Logo" class="pst-logo">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- JavaScript for current time -->
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const options = { timeZone: 'Asia/Manila', hour: '2-digit', minute: '2-digit', second: '2-digit', weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const timeString = now.toLocaleString('en-PH', options);
+            document.getElementById('pst').textContent = timeString;
+        }
+
+        setInterval(updateTime, 1000); // Update the time every second
+        updateTime(); // Initial call to display time immediately
+    </script>
+
+    <!-- Other content of the page -->
+
+</body>
+</html>
