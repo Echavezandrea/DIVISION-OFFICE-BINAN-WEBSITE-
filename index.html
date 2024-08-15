@@ -133,19 +133,17 @@
         footer {
             background: url("{% static 'images/footer.png' %}") no-repeat center center;
             background-size: cover;
-            padding: 20px;
+            padding: 20px 30px; /* Reduce padding */
             color: #ffffff;
             font-size: 14px;
             width: 100%;
             box-sizing: border-box;
             position: relative;
-            padding-bottom: 50px; /* Added space for copyright */
         }
         .footer-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding-left: 20px;
-            padding-right: 20px;
+            padding: 10px 20px; /* Reduce padding */
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
@@ -153,48 +151,34 @@
         .footer-section {
             flex: 1;
             min-width: 250px;
-            margin-bottom: 20px;
-            position: relative; /* Added to handle positioning */
-            z-index: 1; /* Ensure it stays above the background */
+            margin-bottom: 7px; /* Reduce margin */
+            position: relative;
+            z-index: 1;
         }
-        /* Contact Info Specific Styles */
         .contact-info {
-            font-size: 17px;
+            font-size: 14px; /* Match font size */
             text-align: left;
             margin-left: -60px;
-            position: relative; /* Added to handle positioning */
-            z-index: 1; /* Ensure it stays above the background */
+            position: relative;
+            z-index: 1;
         }
-        .contact-info p {
-            margin-bottom: 10px; /* Add margin for spacing between paragraphs */
-        }
-        .contact-icon {
-            vertical-align: middle; /* Ensure the icon aligns properly with text */
+        .contact-info img.contact-icon {
+            width: 20px; /* Adjust width */
+            height: 20px; /* Adjust height */
+            vertical-align: middle; /* Align icons with text */
             margin-right: 5px; /* Space between icon and text */
         }
-        /* Social Media Specific Styles */
         .social-media {
             text-align: right;
             margin-right: -60px;
             position: relative;
-            z-index: 1; /* Ensure it stays above the background */
+            z-index: 1;
         }
         .social-media h4 {
-            margin-bottom: 10px;
-            font-size: 20px;
+            font-size: 18px; /* Match font size */
+            margin-bottom: 5px; /* Reduce margin */
             font-weight: bold;
-            color: #ffffff; /* Change color to white */
-        }
-        .footer-section p,
-        .footer-section a {
             color: #ffffff;
-            text-decoration: none;
-            display: block;
-            margin-bottom: 5px;
-            transition: color 0.3s ease;
-        }
-        .footer-section a:hover {
-            color: #d4d4d4;
         }
         .social-icons {
             display: flex;
@@ -202,13 +186,13 @@
             justify-content: flex-end;
         }
         .social-icons img {
-            width: 24px;
-            height: 24px;
+            width: 40px;
+            height: 40px;
         }
         .copyright {
             text-align: center;
             background-color: #020059;
-            padding: 10px;
+            padding: -10px 0; /* Reduce padding */
             color: #ffffff;
             border-radius: 5px;
             width: 100%;
@@ -217,6 +201,7 @@
             left: 0;
             box-sizing: border-box;
             margin: 0;
+            font-size: 14px; /* Match font size */
         }
     </style>
 </head>
@@ -271,18 +256,18 @@
             <!-- Contact Addresses -->
             <div class="footer-section contact-info">
                 <p>For Contact:</p>
-                <p><img src="{% static 'images/email-icon.png' %}" alt="Email" class="contact-icon"> deped.binancity@deped.gov.ph</p>
-                <p><img src="{% static 'images/telephone-icon.png' %}" alt="Telephone" class="contact-icon"> 511 - 4143 | 511 - 8620</p>
-                <p><img src="{% static 'images/telephone-icon.png' %}" alt="Telephone" class="contact-icon"> 511 - 8746 | 511 - 4191</p>
+                <p><img src="{% static 'images/em.png' %}" alt="Email" class="contact-icon"> deped.binancity@deped.gov.ph</p>
+                <p><img src="{% static 'images/telep.png' %}" alt="Telephone" class="contact-icon"> 511 - 4143 | 511 - 8620</p>
+                <p><img src="{% static 'images/telep.png' %}" alt="Telephone" class="contact-icon"> 511 - 8746 | 511 - 4191</p>
             </div>
 
             <!-- Social Media Links -->
             <div class="footer-section social-media">
                 <h4>Follow Us</h4>
                 <div class="social-icons">
-                    <a href="#"><img src="{% static 'images/facebook-icon.png' %}" alt="Facebook"></a>
-                    <a href="#"><img src="{% static 'images/twitter-icon.png' %}" alt="Twitter"></a>
-                    <a href="#"><img src="{% static 'images/instagram-icon.png' %}" alt="Instagram"></a>
+                    <a href="#"><img src="{% static 'images/facebook.png' %}" alt="Facebook"></a>
+                    <a href="#"><img src="{% static 'images/twitter.png' %}" alt="Twitter"></a>
+                    <a href="#"><img src="{% static 'images/insta.png' %}" alt="Instagram"></a>
                 </div>
             </div>
         </div>
@@ -308,9 +293,8 @@
             const timeString = now.toLocaleString('en-PH', options);
             document.getElementById('pst').textContent = timeString;
         }
-
-        setInterval(updateTime, 1000); // Update the time every second
-        updateTime(); // Initial call to display time immediately
+        setInterval(updateTime, 1000);
+        updateTime(); // Initial call
     </script>
 
 </body>
