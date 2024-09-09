@@ -1,0 +1,343 @@
+<style>
+.calendar {
+    width: 1000px;
+    height: 505px;
+    margin-left: -370px;
+    margin-top: 10px;
+    background-color: #020059;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative;
+    background-image: url("{% static 'images/bgcal4.png' %}");
+    background-size: cover; /* This ensures the image covers the entire calendar area */
+    background-position: center; /* Centers the image */
+}
+
+
+
+        .month {
+            display: flex;
+            justify-content: space-between;
+            font-size: 37px;
+            align-items: center;
+            padding: 22px 50px;
+            background-image: url("{% static 'images/bgcal3.png' %}");
+            color: white;
+            position: relative;
+             font-weight: bold;
+             text-align: center;
+        }
+
+        .weekdays {
+            font-size: 27px;
+            display: flex;
+            background-color:#C2C2C2
+            padding: 22px 22px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .weekdays div {
+            flex: 1;
+            text-align: center;
+            font-weight: bold;
+            color: #5a5a5a;
+        }
+
+
+
+        .days {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0px;
+
+
+
+
+        }
+
+        .days div {
+            width: calc(100% / 7);
+            height: 77px;
+            line-height: 100px;
+            box-sizing: border-box;
+            text-align: right;
+            padding: 20px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            transition: background-color 0.3s;
+            position: relative;
+
+
+
+        }
+
+/* Alternating row colors with 10% opacity */
+.days div:nth-child(7n+1):nth-child(-n+7),
+.days div:nth-child(7n+15):nth-child(-n+21),
+.days div:nth-child(7n+29):nth-child(-n+35) {
+    background-color: rgba(255, 255, 255, 0.1); /* White with 10% opacity */
+}
+
+.days div:nth-child(n+8):nth-child(-n+14),
+.days div:nth-child(n+22):nth-child(-n+28) {
+    background-color: rgba(1, 1, 1, 0.1); /* Gray (black with 10% opacity) */
+}
+
+/* Hover effect on days to darken regardless of row color */
+.days div:hover {
+    background-color: rgba(0, 0, 0, 0.5) !important; /* Darker effect on hover, overriding other styles */
+}
+
+
+
+
+
+.days div span {
+    position: absolute; /* Absolute positioning for the date */
+    top: 5px; /* Push the date number to the top */
+    right: 20px; /* Push the date number to the right */
+    font-size: 24px; /* Adjust font size */
+    font-weight: bold;
+}
+
+ .month .prev,
+        .month .next {
+        margin-top: 170px;
+            background-color: transparent;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 10px;
+            position: absolute;
+            top: -150%;
+            transform: translateY(-50%);
+        }
+ .month .prev {
+            left: 10px;
+        }
+
+        .month .next {
+            right: 10px;
+        }
+
+
+
+ /* Styles for displaying event details in the side of the calendar */
+.event-display {
+    width: 450px;
+    height: 505px;
+    margin-top: -524px; /* Adjusts box positioning */
+    margin-left: 1148px;
+    padding: 20px; /* Adjust inner spacing */
+    background-color: rgba(65, 105, 225, 0.15); /* 15% opacity dark blue */
+    border-radius: 8px;
+    font-size: 23px; /* Adjusts the font size */
+    color: #333;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start; /* Aligns text to the left */
+    box-sizing: border-box;
+    overflow: auto; /* Adds a scrollbar if content overflows */
+    white-space: pre-wrap; /* Handles text wrapping */
+    line-height: 1.5; /* Adjusts vertical spacing between lines */
+    letter-spacing: 0.5px; /* Adjusts horizontal spacing between letters */
+}
+
+.event-display .event-date {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 24px; /* Larger font for the date */
+    line-height: 1.8; /* Increased spacing between lines */
+    letter-spacing: 0.8px; /* Increased spacing between letters */
+}
+
+/* Adjusts the general spacing and first-line indentation for the text */
+.event-display p {
+    margin-top: 10px; /* Adjusts spacing above the paragraph */
+    margin-bottom: 10px; /* Adjusts spacing below the paragraph */
+    padding-left: 10px; /* Adds padding inside the container */
+    text-indent: 15px; /* Indents the first line */
+}
+
+
+/* Highlight Days with Events */
+.days .event-day span {
+    background-color: blue;
+    width: 15%;
+    height: 30%;
+    border-radius: 100%; /* Makes the shape a circle */
+
+}
+
+
+
+
+<body> 
+
+<div class="calendar">
+        <div class="month">
+            <button class="prev" onclick="prevMonth()">&#10094;</button>
+            <div id="monthYear"></div>
+            <button class="next" onclick="nextMonth()">&#10095;</button>
+        </div>
+        <div class="weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+        </div>
+        <div class="days" id="days"></div>
+    </div>
+
+
+
+<div class="event-display" id="eventDisplay">
+    <div class="event-date">TODAY'S EVENT:</div>
+    <div class="event-list">No events today.</div>
+</div>
+    </div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+
+
+<script>
+
+const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+];
+
+let currentMonth = new Date().getMonth();
+let currentYear = new Date().getFullYear();
+let today = new Date();
+
+// Define events with times
+const events = {
+    "2024-08-25": [
+        { time: "10:00 AM", description: "Event 1: Meeting" },
+        { time: "02:00 PM", description: "Event 2: Workshop" }
+    ],
+    "2024-08-30": [
+        { time: "", description: "No specific events" }
+    ],
+    "2024-09-04": [
+        { time: "09:00 AM", description: "Event 1: Meeting" },
+        { time: "03:00 PM", description: "Event 2: Workshop" }
+    ],
+    "2024-09-06": [
+        { time: "11:00 AM", description: "Workshop" }
+    ]
+};
+
+// Function to display events for a specific date
+function showEvents(date) {
+    const eventsList = events[date] || [];
+    const eventDisplay = document.getElementById("eventDisplay");
+    const eventListDiv = eventDisplay.querySelector(".event-list");
+
+    if (eventsList.length) {
+        // Clear the previous events
+        eventListDiv.innerHTML = "";
+
+        // Create a bulleted list
+        const ul = document.createElement("ul");
+
+        // Loop through events and add them to the list
+        eventsList.forEach(event => {
+            const li = document.createElement("li");
+
+            // Format event with time (if available) and description
+            li.textContent = event.time ? `${event.time} - ${event.description}` : event.description;
+
+            // Add each event to the unordered list
+            ul.appendChild(li);
+        });
+
+        // Append the list to the event display div
+        eventListDiv.appendChild(ul);
+    } else {
+        eventListDiv.textContent = "No events today.";
+    }
+}
+
+// Function to get today's date in the format YYYY-MM-DD
+function getTodayDate() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+// Function to get the next upcoming event
+function getNextEvent() {
+    const todayDate = getTodayDate();
+    const eventDates = Object.keys(events).sort();
+
+    for (let date of eventDates) {
+        if (date >= todayDate) {
+            return { date: date, events: events[date] };
+        }
+    }
+    return null;
+}
+
+
+const headlineArticles = [
+    "RECENT EVENTS",
+    "August 20, 2024: Sharing success stories from South and North, SDO Binan spreads the NQMS worth!",
+    "August 28, 2024: SDO Binan confirms ALS Partnership with Prime Reformation Center of the City",
+    "August 28, 2024: 4 out of 11 Gawad Patnugot Stage 2 Qualifiers successfully hurdled the document validation process from August 19-22, 2024."
+];
+
+function renderCalendar(month, year) {
+    const daysContainer = document.getElementById("days");
+    const monthYear = document.getElementById("monthYear");
+    daysContainer.innerHTML = "";
+
+    const firstDay = new Date(year, month).getDay();
+    const daysInMonth = 32 - new Date(year, month, 32).getDate();
+    const today = new Date(); // Get today's date
+
+    monthYear.textContent = `${monthNames[month]} ${year}`;
+
+    // Empty cells for the first days
+    for (let i = 0; i < firstDay; i++) {
+        daysContainer.innerHTML += `<div></div>`;
+    }
+
+    // Create the day cells with the date in the upper-right corner
+    for (let i = 1; i <= daysInMonth; i++) {
+        const dateKey = `${year}-${String(month + 1).padStart(2, "0")}-${String(i).padStart(2, "0")}`;
+        const dayDiv = document.createElement("div");
+
+        // Wrap the date number in a span for better control
+        dayDiv.innerHTML = `<span>${i}</span>`;
+        dayDiv.onclick = () => showEvents(dateKey);
+
+        // Highlight the current day
+        if (year === today.getFullYear() && month === today.getMonth() && i === today.getDate()) {
+            dayDiv.classList.add("current-day");
+        }
+
+        // Highlight event days
+        if (events[dateKey]) {
+            dayDiv.classList.add("event-day");
+        }
+
+        daysContainer.appendChild(dayDiv);
+    }
+}
+
+</script>
