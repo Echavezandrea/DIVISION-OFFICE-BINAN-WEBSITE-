@@ -340,4 +340,9 @@ function renderCalendar(month, year) {
     }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    renderCalendar(currentMonth, currentYear);
+    showEvents(getTodayDate()); // Display today's events
+});
+
 </script>
