@@ -74,7 +74,7 @@
 
         function showNews() {
             let news = document.getElementsByClassName("myNews");
-            for (let i = 0; i < slides.length; i++) {
+            for (let i = 0; i < news.length; i++) {
                 news[i].style.display = "none";
             }
             newsIndex++;
