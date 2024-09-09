@@ -294,52 +294,6 @@ function getNextEvent() {
 }
 
 
-const headlineArticles = [
-    "RECENT EVENTS",
-    "August 20, 2024: Sharing success stories from South and North, SDO Binan spreads the NQMS worth!",
-    "August 28, 2024: SDO Binan confirms ALS Partnership with Prime Reformation Center of the City",
-    "August 28, 2024: 4 out of 11 Gawad Patnugot Stage 2 Qualifiers successfully hurdled the document validation process from August 19-22, 2024."
-];
-
-function renderCalendar(month, year) {
-    const daysContainer = document.getElementById("days");
-    const monthYear = document.getElementById("monthYear");
-    daysContainer.innerHTML = "";
-
-    const firstDay = new Date(year, month).getDay();
-    const daysInMonth = 32 - new Date(year, month, 32).getDate();
-    const today = new Date(); // Get today's date
-
-    monthYear.textContent = `${monthNames[month]} ${year}`;
-
-    // Empty cells for the first days
-    for (let i = 0; i < firstDay; i++) {
-        daysContainer.innerHTML += `<div></div>`;
-    }
-
-    // Create the day cells with the date in the upper-right corner
-    for (let i = 1; i <= daysInMonth; i++) {
-        const dateKey = `${year}-${String(month + 1).padStart(2, "0")}-${String(i).padStart(2, "0")}`;
-        const dayDiv = document.createElement("div");
-
-        // Wrap the date number in a span for better control
-        dayDiv.innerHTML = `<span>${i}</span>`;
-        dayDiv.onclick = () => showEvents(dateKey);
-
-        // Highlight the current day
-        if (year === today.getFullYear() && month === today.getMonth() && i === today.getDate()) {
-            dayDiv.classList.add("current-day");
-        }
-
-        // Highlight event days
-        if (events[dateKey]) {
-            dayDiv.classList.add("event-day");
-        }
-
-        daysContainer.appendChild(dayDiv);
-    }
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     renderCalendar(currentMonth, currentYear);
     showEvents(getTodayDate()); // Display today's events
