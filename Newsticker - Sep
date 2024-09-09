@@ -1,0 +1,146 @@
+<style>
+
+
+/* Breaking News Ticker */
+.breaking-news {
+    width: 100%;
+    background-color: #020059; /* Dark blue background */
+    color: white; /* White text */
+    overflow: hidden; /* Hide overflow */
+    position: relative;
+    display: flex;
+
+
+}
+
+.news-ticker {
+    display: inline-block;
+    white-space: nowrap;
+    animation: scroll 47s linear infinite; /* Adjusted speed for smooth scrolling */
+    font-family: 'Arial', sans-serif; /* Choose a clean, readable font */
+    font-size: .9em; /* Adjust font size for readability */
+    line-height: .8; /* Adjust line spacing */
+    letter-spacing: 0.06em; /* Slightly increase letter spacing */
+
+
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(40%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+</style>
+
+
+
+
+<body> 
+
+<!-- Breaking News Ticker -->
+    <div class="breaking-news">
+        <div class="news-ticker" id="newsTicker"></div>
+    </div>
+
+    <!-- Rest of your content -->
+
+    <script src="{% static 'js/script.js' %}"></script>
+
+</body>
+
+
+<script>
+const headlineArticles = [
+    "RECENT EVENTS",
+    "August 20, 2024: Sharing success stories from South and North, SDO Binan spreads the NQMS worth!",
+    "August 28, 2024: SDO Binan confirms ALS Partnership with Prime Reformation Center of the City",
+    "August 28, 2024: 4 out of 11 Gawad Patnugot Stage 2 Qualifiers successfully hurdled the document validation process from August 19-22, 2024."
+];
+
+function renderCalendar(month, year) {
+    const daysContainer = document.getElementById("days");
+    const monthYear = document.getElementById("monthYear");
+    daysContainer.innerHTML = "";
+
+    const firstDay = new Date(year, month).getDay();
+    const daysInMonth = 32 - new Date(year, month, 32).getDate();
+    const today = new Date(); // Get today's date
+
+    monthYear.textContent = `${monthNames[month]} ${year}`;
+
+    // Empty cells for the first days
+    for (let i = 0; i < firstDay; i++) {
+        daysContainer.innerHTML += `<div></div>`;
+    }
+
+    // Create the day cells with the date in the upper-right corner
+    for (let i = 1; i <= daysInMonth; i++) {
+        const dateKey = `${year}-${String(month + 1).padStart(2, "0")}-${String(i).padStart(2, "0")}`;
+        const dayDiv = document.createElement("div");
+
+        // Wrap the date number in a span for better control
+        dayDiv.innerHTML = `<span>${i}</span>`;
+        dayDiv.onclick = () => showEvents(dateKey);
+
+        // Highlight the current day
+        if (year === today.getFullYear() && month === today.getMonth() && i === today.getDate()) {
+            dayDiv.classList.add("current-day");
+        }
+
+        // Highlight event days
+        if (events[dateKey]) {
+            dayDiv.classList.add("event-day");
+        }
+
+        daysContainer.appendChild(dayDiv);
+    }
+}
+
+function updateNewsTicker() {
+    const nextEventInfo = getNextEvent();
+    let combinedNews = '';
+
+    if (nextEventInfo) {
+        const { date, events } = nextEventInfo;
+        const formattedDate = new Date(date).toLocaleDateString('en-PH', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        });
+
+        // Map events to a readable format
+        combinedNews = events.map(event => {
+            const time = event.time ? `${event.time} - ` : '';
+            return `${formattedDate}: ${time}${event.description}`;
+        }).join(' | ');
+    } else {
+        // If no event, show a notice
+        combinedNews = 'No event today';
+    }
+
+    // Append headline articles after the events or notice
+    combinedNews += combinedNews ? ` | ${headlineArticles.join(' | ')}` : headlineArticles.join(' | ');
+
+    const newsTicker = document.getElementById('newsTicker');
+    newsTicker.innerHTML = `<p>LATEST UPDATE: ${combinedNews}</p>`;
+}
+
+function prevMonth() {
+    currentMonth = currentMonth === 0 ? 11 : currentMonth - 1;
+    currentYear = currentMonth === 11 ? currentYear - 1 : currentYear;
+    renderCalendar(currentMonth, currentYear);
+}
+
+function nextMonth() {
+    currentMonth = currentMonth === 11 ? 0 : currentMonth + 1;
+    currentYear = currentMonth === 0 ? currentYear + 1 : currentYear;
+    renderCalendar(currentMonth, currentYear);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateNewsTicker();
+});
