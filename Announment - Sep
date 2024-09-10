@@ -21,7 +21,7 @@
         }
 
         /* Navigation Buttons */
-        .prev, .next {
+        .p, .n {
             cursor: pointer;
             position: absolute;
             top: 50%;
@@ -37,12 +37,12 @@
 
         }
 
-        .next {
+        .n {
             right: 0;
             border-radius: 3px 0 0 3px;
         }
 
-        .prev:hover, .next:hover {
+        .p:hover, .n:hover {
             background-color: rgba(0, 0, 0, 0.8);
         }
 
@@ -51,18 +51,18 @@
  <!-- News Section -->
     <div class="news-container">
         <div class="myNews fade">
-            <img src="{% static 'images/p1.jpg' %}" style="width:100%">
+            <img src="{% static 'images/an1.jpg' %}" style="width:100%">
         </div>
        <div class="myNews fade">
-            <img src="{% static 'images/p2.jpg' %}" style="width:100%">
+            <img src="{% static 'images/an22.jpg' %}" style="width:100%">
         </div>
         <div class="myNews fade">
-            <img src="{% static 'images/p3.jpg' %}" style="width:100%">
+            <img src="{% static 'images/an33.jpg' %}" style="width:100%">
         </div>
 
         <!-- Navigation Buttons -->
-        <a class="prev" onclick="plusNews(-1)">&#10094;</a>
-        <a class="next" onclick="plusNews(1)">&#10095;</a>
+        <a class="p" onclick="plusNews(-1)">&#10094;</a>
+        <a class="n" onclick="plusNews(1)">&#10095;</a>
     </div>
 </body>
 
