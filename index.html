@@ -16,14 +16,9 @@
             min-height: 100vh; /* Ensures the body can expand beyond the viewport height */
             display: flex;
             flex-direction: column;
+            box-sizing: border-box;
+            overflow-x: hidden;
         }
-
-        body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    overflow-x: auto;
-}
 
 .container {
     max-width: 3500px; /* Adjust the width to your preference */
@@ -54,8 +49,6 @@ html {
         font-size: 125%; /* Zoom in by 25% when the screen width is 900px or more */
     }
 }
-
-
 
 
         /* Header Styles */
@@ -173,11 +166,6 @@ header {
 
 
 
-
-
-
-
-
         /* Navigation Menu Styles */
         nav {
             text-align: center;
@@ -212,7 +200,7 @@ header {
             width: 100%;
             height: 2px;
             background-color: #000;
-            margin: 40px auto;
+            margin: 20px auto;
         }
 
 
@@ -282,21 +270,23 @@ header {
 .whats-new {
     text-align: left; /* Center the text within the container */
     font-family: 'Bookman Old Style', serif;
-    font-size: 33px;
+    font-size: 28px;
     color: black;
-    margin-left: 20px; /* Remove any extra margin */
-    margin-top: -10px;
+    margin-left: 330px; /* Remove any extra margin */
+    margin-top: 10px;
 }
 
 /* Divider line below the 'What's New' text */
 .whats-new-divider {
-            width: 100%;
-            height: 2px;
+            width: 103%;
+            height: 1px;
             background-color: #000;
-            margin: 10px auto;
-            margin-top: -20px;
+            margin: 10px;
+            margin-left: -22px;
+            margin-top: 6px;
 
 }
+
 
      /* Navigation Bar Styles */
 .side-nav {
@@ -306,12 +296,12 @@ header {
     background-color: #f0f0f0;
     border-radius: 8px;
     margin-left: 20px;
-    margin-top: -20px;
+    margin-top: -515px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .second-nav {
-    margin-top: 20px; /* Add margin to separate it from the first nav */
+    margin-top: -370px; /* Add margin to separate it from the first nav */
 }
 
 .side-nav ul {
@@ -384,11 +374,11 @@ header {
 
 
 .facebook-plugin-container {
-            width: 400px; /* Set the desired fixed width */
+            width: 405px; /* Set the desired fixed width */
             height: 450;
             margin-left: auto;
             margin-right: 18px;
-            margin-top: -730px;
+            margin-top: -745px;
             float: right;
         }
 
@@ -397,15 +387,20 @@ header {
         }
 
 
+
+
+
       .articles-container {
      display: flex;
      flex-direction: column; /* Arrange articles vertically */
      gap: 20px; /* Space between articles */
      align-items: center; /* Center the articles horizontally, if desired */
-     margin-top: -1240px;
-     margin-right: 90px ;
-     margin-bottom: 100px;
+     margin-top: -1216px;
+     margin-right: 90px;
+     margin-bottom: 50px;
         }
+
+
 
         .article {
             width: 710px; /* Set the width of each article */
@@ -416,6 +411,7 @@ header {
             border-radius: 5px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             padding: 10px;
+            position: relative;
         }
 
         .article h2 {
@@ -450,7 +446,7 @@ header {
     width: 1000px;
     height: 505px;
     margin-left: -370px;
-    margin-top: 10px;
+    margin-top: 60px;
     background-color: #020059;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -771,6 +767,78 @@ header {
     color: #dddddd;
 }
 
+
+
+
+
+       /* News Slideshow Styles 3 pictures event 'NEWS' */
+.news-container {
+    position: relative;
+    max-width: 58%; /* Adjust the width to your preference */
+    height: 450px; /* Desired height */
+    margin: auto;
+    margin-top: -45px;
+    margin-right: -440px;
+    overflow: hidden; /* Hide any overflow from the container */
+}
+
+.myNews {
+    display: none;
+    height: 100%;
+    width: 48%;
+}
+
+.myNews img {
+    width: 100%;
+    height: 100%; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensures image scales nicely */
+    display: block;
+}
+
+/* Navigation Buttons */
+.p, .n {
+    cursor: pointer;
+    position: absolute;
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Align buttons vertically at the center */
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.5); /* Add semi-transparent background for better visibility */
+    user-select: none;
+}
+
+/* Specific to the previous button */
+.p {
+    left: 10px; /* Adjust the distance from the left edge */
+}
+
+/* Specific to the next button */
+.n {
+    right: 468px;
+}
+
+/* Hover effect for both buttons */
+.p:hover, .n:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Optional: Fade animation for images */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {opacity: 0.4;}
+    to {opacity: 1;}
+}
+
+
     </style>
 
     <!-- Header Section -->
@@ -805,6 +873,7 @@ header {
     <!-- Rest of your content -->
 
     <script src="{% static 'js/script.js' %}"></script>
+
 
 <div class="container">
     <!-- Navigation Menu -->
@@ -846,9 +915,29 @@ header {
 
     <!-- "What's New" Section -->
 <div class="whats-new-container">
-    <p class="whats-new">What's New‎ ‎ ‎ ‎ ‎ ‎ ‎  ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ Announcement</p>
     <div class="whats-new-divider"></div>
+    <p class="whats-new">What's New ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ Announcement</p>
+
 </div>
+
+
+    <!-- News Section -->
+    <div class="news-container">
+        <div class="myNews fade">
+            <img src="{% static 'images/an1.jpg' %}" style="width:100%">
+        </div>
+        <div class="myNews fade">
+            <img src="{% static 'images/an22.jpg' %}" style="width:100%">
+        </div>
+        <div class="myNews fade">
+            <img src="{% static 'images/an33.jpg' %}" style="width:100%">
+        </div>
+
+        <!-- Navigation Buttons -->
+        <a class="p" onclick="plusNews(-1)">&#10094;</a>
+        <a class="n" onclick="plusNews(1)">&#10095;</a>
+    </div>
+
 
      <div class="wrapper">
         <!-- Side Navigation -->
@@ -1233,6 +1322,41 @@ document.addEventListener('DOMContentLoaded', () => {
     showEvents(getTodayDate()); // Display today's events
     updateNewsTicker();
 });
+
+
+        let newsIndex = 0;
+showNews(newsIndex); // Initial call
+
+// Function to control the slideshow display
+function showNews(n) {
+    let news = document.getElementsByClassName("myNews");
+
+    if (n > news.length - 1) {
+        newsIndex = 0; // Reset to the first image if it exceeds the length
+    }
+    if (n < 0) {
+        newsIndex = news.length - 1; // Go to the last image if less than 0
+    }
+
+    for (let i = 0; i < news.length; i++) {
+        news[i].style.display = "none"; // Hide all images
+    }
+    news[newsIndex].style.display = "block"; // Show the current image
+}
+
+// Function to increment or decrement the current index
+function plusNews(n) {
+    showNews(newsIndex += n);
+}
+
+// Automatic slideshow transition
+function autoShowNews() {
+    plusNews(1); // Move to the next slide
+    setTimeout(autoShowNews, 10000); // Change image every 10 seconds
+}
+
+autoShowNews(); // Initial call to start the auto-slideshow
+
 
     </script>
 
