@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+
+{% load static %}
+{% load static %}
+<header>
+     {% include 'header.html' %}
+</header>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research</title>
+
+    <body>
+<html>
+     <nav>
+        <ul class="menu">
+            <li><a href="{% url 'index' %}">HOME</a></li>
+            <li><a href="{% url 'about' %}">ABOUT</a></li>
+            <li><a href="{% url 'news' %}">NEWS</a></li>
+            <li><a href="{% url 'issuances' %}">ISSUANCES</a></li>
+            <li><a href="{% url 'qms' %}">QMS</a></li>
+            <li><a href="{% url 'procurement' %}">PROCUREMENT</a></li>
+            <li><a href="{% url 'learningresources' %}">LEARNING RESOURCES</a></li>
+            <li><a href="{% url 'research' %}">RESEARCH</a></li>
+            <li><a href="{% url 'contact' %}">CONTACT US</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- Divider Line -->
+    <div class="divider"></div>
+
+    <!-- Slideshow Section -->
+    <div class="slideshow-container">
+        <div class="mySlides fade">
+            <img src="{% static 'images/p1.jpg' %}" style="width:100%">
+        </div>
+        <div class="mySlides fade">
+            <img src="{% static 'images/p2.jpg' %}" style="width:100%">
+        </div>
+        <div class="mySlides fade">
+            <img src="{% static 'images/p3.jpg' %}" style="width:100%">
+        </div>
+
+        <!-- Navigation Buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+
+</html>
+
+</body>
+    <style>
+
+.container {
+    max-width: 3500px; /* Adjust the width to your preference */
+    margin: 0 auto; /* This centers the container */
+    padding-left: 0; /* Optional: Adds some padding to the left */
+    padding-right: 0; /* Optional: Adds some padding to the right */
+    transform-origin: 0 0; /* Ensures scaling happens from the top-left corner */
+}
+
+html {
+            box-sizing: border-box;
+            overflow-x: hidden;
+            font-size: 100%;
+
+
+
+
+}
+/* Add this to ensure all elements respect the box-sizing */
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+* Zoom behavior for text and other scalable content */
+@media screen and (min-width: 600px) {
+    html {
+        font-size: 112.5%; /* Zoom in by 12.5% when the screen width is 600px or more */
+    }
+}
+
+@media screen and (min-width: 900px) {
+    html {
+        font-size: 125%; /* Zoom in by 25% when the screen width is 900px or more */
+    }
+}
+
+
+
+
+
+        /* Navigation Menu Styles */
+        nav {
+            text-align: center;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .menu li {
+            display: inline;
+        }
+
+        .menu a {
+            font-family: 'Canva Sans', sans-serif;
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .menu a:hover {
+            color: #0056b3;
+        }
+
+        /* Horizontal Line Style */
+        .divider {
+            width: 1500px;
+            height: 2px;
+            background-color: #000;
+            margin: 6px auto;
+        }
+
+
+
+
+        /* Slideshow Styles */
+        .slideshow-container {
+
+            position: relative;
+            max-width: 100%;
+            height: 500px; /* Adjust this value to set the desired height */
+            margin: auto; /* Centers the slideshow */
+             margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .mySlides {
+            display: none;
+            height: 100%;
+            width: 100%;
+        }
+
+        .mySlides img {
+            height: 100%; /* Ensures the image fills the height of the container */
+            width: 100%; /* Maintains aspect ratio */
+        }
+
+        /* Navigation Buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+
+
+
+    <script>
+        let slideIndex = 0;
+        showSlides(); // Initial call
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("mySlides");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            slides[slideIndex-1].style.display = "block";
+            setTimeout(showSlides, 10000); // Change image every 10 seconds
+        }
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+    </script>
+
+    <footer>
+        {% include 'footer.html' %}
+    </footer>
+
