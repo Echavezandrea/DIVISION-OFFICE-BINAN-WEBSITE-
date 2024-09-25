@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+
+    <!-- Adding Google Fonts for advanced design -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+        /* Global Styles */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            background-image: url("{% static 'images/whitebg.png' %}"); /* Background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            max-width: 3500px;
+            margin: 0 auto;
+            padding-left: 0;
+            padding-right: 0;
+            transform-origin: 0 0;
+        }
+
+        html {
+            font-size: 100%;
+        }
+
+        *, *::before, *::after {
+            box-sizing: inherit;
+        }
+
+        @media screen and (min-width: 600px) {
+            html {
+                font-size: 112.5%;
+            }
+        }
+
+        @media screen and (min-width: 900px) {
+            html {
+                font-size: 125%;
+            }
+        }
+
+        /* Navigation Menu Styles */
+        nav {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu li {
+            display: inline;
+        }
+
+        .menu a {
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .menu a:hover {
+            color: #0056b3;
+        }
+
+        /* Single Divider Line Style */
+        .divider {
+            width: 100%;
+            height: 2px;
+            background-color: #000;
+            margin: 20px 0;
+        }
+
+        /* Image and Map Container */
+        .image-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Google Map Container */
+        .map-container {
+            width: 100%;
+            max-width: 1200px;
+            height: 600px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 40px auto;
+            background-color: #f0f0f0;
+        }
+
+        .map-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 999; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9); /* Black background with transparency */
+        }
+
+        .modal-content {
+            display: block;
+            width: 90vw; /* Full viewport width with some margin */
+            height: 90vh; /* Full viewport height with some margin */
+            object-fit: contain; /* Maintain aspect ratio */
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .modal-content:hover {
+            transform: scale(1.05);
+        }
+
+        /* Close button */
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #bbb;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 1.1em;
+            color: #a7ffeb;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        {% include 'header.html' %}
+    </header>
+
+    <div class="container">
+        <!-- Navigation Menu -->
+        <nav>
+            <ul class="menu">
+                <li><a href="{% url 'index' %}">HOME</a></li>
+                <li><a href="{% url 'about' %}">ABOUT</a></li>
+                <li><a href="{% url 'news' %}">NEWS</a></li>
+                <li><a href="{% url 'issuances' %}">ISSUANCES</a></li>
+                <li><a href="{% url 'qms' %}">QMS</a></li>
+                <li><a href="{% url 'procurement' %}">PROCUREMENT</a></li>
+                <li><a href="{% url 'learningresources' %}">LEARNING RESOURCES</a></li>
+                <li><a href="{% url 'research' %}">RESEARCH</a></li>
+                <li><a href="{% url 'contact' %}">CONTACT US</a></li>
+            </ul>
+        </nav>
+
+        <!-- Single Divider Line -->
+        <div class="divider"></div>
+
+        <!-- Photo Section -->
+        <h2 style="text-align: center; color: black;">Contact Us</h2>
+        <div class="image-container">
+            <img id="imageZoom" src="{% static 'images/dod2.png' %}" alt="Contact Us">
+        </div>
+
+        <!-- Modal for Full-Screen Image -->
+        <div id="imageModal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="zoomedImage">
+        </div>
+
+        <!-- Google Map Section -->
+        <h2 style="text-align: center; color: black;">Locate Us</h2>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2005.4171623255323!2d121.0719182!3d14.314454!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd5c30871cb39d%3A0xa548b26f3b7a9dc9!2s102%20P.%20Burgos%20Street%2C%20Binan%2C%204024%20Laguna!5e0!3m2!1sen!2sph!4v1695111815882"
+            allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p>Our location: 102 P. Burgos Street, Biñan, 4024 Laguna</p>
+    </div>
+
+    <footer>
+        {% include 'footer.html' %}
+    </footer>
+
+    <!-- JavaScript for Full-Screen Modal -->
+    <script>
+        // Get modal elements
+        var modal = document.getElementById("imageModal");
+        var img = document.getElementById("imageZoom");
+        var modalImg = document.getElementById("zoomedImage");
+        var closeBtn = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the image, open the modal and display the full-screen image
+        img.onclick = function() {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            document.body.style.overflow = "hidden"; // Disable scrolling while modal is open
+        }
+
+        // When the user clicks the close button, close the modal
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto"; // Re-enable scrolling when modal is closed
+        }
+
+        // Close the modal when the user clicks outside the image
+        modal.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+                document.body.style.overflow = "auto"; // Re-enable scrolling when modal is closed
+            }
+        }
+    </script>
+
+</body>
+
+</html>
