@@ -28,11 +28,10 @@
         }
 
         .container {
-            max-width: 3500px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding-left: 0;
-            padding-right: 0;
-            transform-origin: 0 0;
+            padding-left: 10px;
+            padding-right: 10px;
         }
 
         html {
@@ -43,6 +42,7 @@
             box-sizing: inherit;
         }
 
+        /* Adjust font-size based on screen size */
         @media screen and (min-width: 600px) {
             html {
                 font-size: 112.5%;
@@ -68,6 +68,7 @@
             list-style-type: none;
             padding: 0;
             margin: 0;
+            flex-wrap: wrap; /* Mobile-friendly layout */
         }
 
         .menu li {
@@ -120,7 +121,7 @@
         .map-container {
             width: 100%;
             max-width: 1200px;
-            height: 600px;
+            height: 400px; /* Reduced height for mobile */
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
@@ -189,6 +190,44 @@
             color: #a7ffeb;
             text-align: center;
         }
+
+        /* Mobile-specific styles */
+        @media only screen and (max-width: 768px) {
+            .container {
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+
+            .menu a {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+
+            .map-container {
+                height: 300px; /* Adjust map height for mobile */
+            }
+
+            .image-container {
+                margin: 20px auto;
+            }
+
+            /* Modal full-screen image */
+            .modal-content {
+                width: 95vw; /* Less padding for small screens */
+                height: 95vh;
+            }
+
+            .close {
+                top: 10px;
+                right: 15px;
+                font-size: 30px;
+            }
+
+            /* Text in the container can be adjusted */
+            .container h2 {
+                font-size: 1.2rem;
+            }
+        }
     </style>
 </head>
 
@@ -220,7 +259,7 @@
         <!-- Photo Section -->
         <h2 style="text-align: center; color: black;">Contact Us</h2>
         <div class="image-container">
-            <img id="imageZoom" src="{% static 'images/dod2.png' %}" alt="Contact Us">
+            <img id="imageZoom" src="{% static 'images/dod.png' %}" alt="Contact Us">
         </div>
 
         <!-- Modal for Full-Screen Image -->
@@ -236,35 +275,34 @@
             allowfullscreen loading="lazy"></iframe>
         </div>
         <p>Our location: 102 P. Burgos Street, Biñan, 4024 Laguna</p>
+
+        <!-- Single Divider Line -->
+        <div class="divider"></div>
     </div>
 
     <footer>
         {% include 'footer.html' %}
     </footer>
 
-    <!-- JavaScript for Full-Screen Modal -->
+    <!-- Modal Image Script -->
     <script>
-        // Get modal elements
         var modal = document.getElementById("imageModal");
         var img = document.getElementById("imageZoom");
         var modalImg = document.getElementById("zoomedImage");
         var closeBtn = document.getElementsByClassName("close")[0];
 
-        // When the user clicks the image, open the modal and display the full-screen image
-        img.onclick = function() {
+        img.onclick = function () {
             modal.style.display = "block";
             modalImg.src = this.src;
-            document.body.style.overflow = "hidden"; // Disable scrolling while modal is open
+            document.body.style.overflow = "hidden"; // Disable scrolling when modal is open
         }
 
-        // When the user clicks the close button, close the modal
-        closeBtn.onclick = function() {
+        closeBtn.onclick = function () {
             modal.style.display = "none";
             document.body.style.overflow = "auto"; // Re-enable scrolling when modal is closed
         }
 
-        // Close the modal when the user clicks outside the image
-        modal.onclick = function(event) {
+        modal.onclick = function (event) {
             if (event.target === modal) {
                 modal.style.display = "none";
                 document.body.style.overflow = "auto"; // Re-enable scrolling when modal is closed
