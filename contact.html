@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
+    <title>Contact Us</title>
 
     <!-- Adding Google Fonts for advanced design -->
     <style>
@@ -21,17 +21,17 @@
             flex-direction: column;
             box-sizing: border-box;
             overflow-x: hidden;
-            background-image: url("{% static 'images/whitebg.png' %}"); /* Background image */
-            background-size: cover;
+
             background-position: center;
             background-repeat: no-repeat;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 3500px;
             margin: 0 auto;
-            padding-left: 10px;
-            padding-right: 10px;
+            padding-left: 0;
+            padding-right: 0;
+            transform-origin: 0 0;
         }
 
         html {
@@ -42,7 +42,6 @@
             box-sizing: inherit;
         }
 
-        /* Adjust font-size based on screen size */
         @media screen and (min-width: 600px) {
             html {
                 font-size: 112.5%;
@@ -68,7 +67,6 @@
             list-style-type: none;
             padding: 0;
             margin: 0;
-            flex-wrap: wrap; /* Mobile-friendly layout */
         }
 
         .menu li {
@@ -79,7 +77,7 @@
             font-family: 'Poppins', sans-serif;
             text-decoration: none;
             color: black;
-            font-size: 18px;
+            font-size: 20px;
             padding: 10px 20px;
             text-transform: uppercase;
             transition: color 0.3s ease;
@@ -104,7 +102,8 @@
             margin: 40px auto;
         }
 
-        .image-container img {
+        /* Keep the hover effect only for the CMS photo */
+        #imageZoom {
             width: 100%;
             height: auto;
             border-radius: 20px;
@@ -113,8 +112,17 @@
             transition: transform 0.3s ease;
         }
 
-        .image-container img:hover {
+        #imageZoom:hover {
             transform: scale(1.05);
+        }
+
+        /* Remove hover effect for 'Contact Us' and 'Locate Us' */
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
         }
 
         /* Google Map Container */
@@ -125,14 +133,9 @@
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
             margin: 40px auto;
             background-color: #f0f0f0;
-        }
-
-        .map-container:hover {
-            transform: scale(1.05);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
         }
 
         iframe {
@@ -191,16 +194,18 @@
             text-align: center;
         }
 
+        /* Text alignment style */
+        .left-align {
+            text-align: left;
+            color: black;
+            margin-left: 20px; /* Optional left margin */
+        }
+
         /* Mobile-specific styles */
         @media only screen and (max-width: 768px) {
             .container {
                 padding-left: 5px;
                 padding-right: 5px;
-            }
-
-            .menu a {
-                font-size: 14px;
-                padding: 8px 12px;
             }
 
             .map-container {
@@ -210,24 +215,8 @@
             .image-container {
                 margin: 20px auto;
             }
-
-            /* Modal full-screen image */
-            .modal-content {
-                width: 95vw; /* Less padding for small screens */
-                height: 95vh;
-            }
-
-            .close {
-                top: 10px;
-                right: 15px;
-                font-size: 30px;
-            }
-
-            /* Text in the container can be adjusted */
-            .container h2 {
-                font-size: 1.2rem;
-            }
         }
+
     </style>
 </head>
 
@@ -256,10 +245,10 @@
         <!-- Single Divider Line -->
         <div class="divider"></div>
 
-        <!-- Photo Section -->
-        <h2 style="text-align: center; color: black;">Contact Us</h2>
+        <!-- Photo Section for CMS -->
+        <h2 class="left-align">SDO Binan Client Satisfaction Measurement (CSM)</h2>
         <div class="image-container">
-            <img id="imageZoom" src="{% static 'images/dod.png' %}" alt="Contact Us">
+            <img id="imageZoom" src="{% static 'images/cms.png' %}" alt="SDO Binan Client Satisfaction Measurement (CSM)">
         </div>
 
         <!-- Modal for Full-Screen Image -->
@@ -268,44 +257,44 @@
             <img class="modal-content" id="zoomedImage">
         </div>
 
-        <!-- Google Map Section -->
-        <h2 style="text-align: center; color: black;">Locate Us</h2>
+        <!-- Photo Section for 'Contact Us' -->
+        <h2 class="left-align">Contact Us</h2>
+        <div class="image-container">
+            <img src="{% static 'images/local.png' %}" alt="Contact Us">
+        </div>
+
+        <!-- Google Map Section for 'Locate Us' -->
+        <h2 class="left-align">Locate Us</h2>
         <div class="map-container">
             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2005.4171623255323!2d121.0719182!3d14.314454!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd5c30871cb39d%3A0xa548b26f3b7a9dc9!2s102%20P.%20Burgos%20Street%2C%20Binan%2C%204024%20Laguna!5e0!3m2!1sen!2sph!4v1695111815882"
             allowfullscreen loading="lazy"></iframe>
         </div>
         <p>Our location: 102 P. Burgos Street, Biñan, 4024 Laguna</p>
-
-        <!-- Single Divider Line -->
-        <div class="divider"></div>
     </div>
 
     <footer>
         {% include 'footer.html' %}
     </footer>
 
-    <!-- Modal Image Script -->
     <script>
+        // JavaScript for modal image display
         var modal = document.getElementById("imageModal");
         var img = document.getElementById("imageZoom");
         var modalImg = document.getElementById("zoomedImage");
-        var closeBtn = document.getElementsByClassName("close")[0];
+        var span = document.getElementsByClassName("close")[0];
 
-        img.onclick = function () {
+        img.onclick = function() {
             modal.style.display = "block";
             modalImg.src = this.src;
-            document.body.style.overflow = "hidden"; // Disable scrolling when modal is open
         }
 
-        closeBtn.onclick = function () {
+        span.onclick = function() {
             modal.style.display = "none";
-            document.body.style.overflow = "auto"; // Re-enable scrolling when modal is closed
         }
 
-        modal.onclick = function (event) {
-            if (event.target === modal) {
+        window.onclick = function(event) {
+            if (event.target == modal) {
                 modal.style.display = "none";
-                document.body.style.overflow = "auto"; // Re-enable scrolling when modal is closed
             }
         }
     </script>
