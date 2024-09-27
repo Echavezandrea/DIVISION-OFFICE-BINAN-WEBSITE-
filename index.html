@@ -206,52 +206,67 @@ header {
 
 
           /* Slideshow Styles 3 pictures event */
-        .slideshow-container {
-            position: relative;
-            max-width: 100%;
-            height: 500px; /* Adjust this value to set the desired height */
-           margin: auto;
-            overflow: hidden;
-        }
+        /* Slideshow container styling */
+.slideshow-container {
+    position: relative;
+    max-width: 100%; /* Fit to screen */
+    height: 500px;
+    margin: auto;
+}
 
-        .mySlides {
-            display: none;
-            height: 100%;
-            width: 100%;
-        }
+/* Hide all slides by default */
+.mySlides {
+    display: none;
+     height: 100%;
+     width: 100%;
+    transition: opacity 0.6s ease-in-out; /* Fade transition effect */
+}
 
-        .mySlides img {
-            height: 100%; /* Ensures the image fills the height of the container */
+/* Image styling */
+img {
+       height: 100%; /* Ensures the image fills the height of the container */
             width: 100%; /* Maintains aspect ratio */
             display: block;
             margin-left: -160;
-        }
+}
 
-        /* Navigation Buttons */
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 16px;
-            margin-top: -22px;
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
-            transition: 0.6s ease;
-            border-radius: 0 3px 3px 0;
-            user-select: none;
+/* Previous and next buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0; /* Right rounded for next button */
+    user-select: none; /* Prevent text selection */
+}
 
-        }
+/* Positioning for next and previous buttons */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px; /* Left rounded for prev button */
+}
 
-        .next {
-            right: 0;
-            border-radius: 3px 0 0 3px;
-        }
+/* Hover effect for navigation buttons */
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Dark background on hover */
+}
 
-        .prev:hover, .next:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
+/* Fade effect for the slides */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from { opacity: .4; }
+    to { opacity: 1; }
+}
+
 
 
 
@@ -894,22 +909,25 @@ header {
     <!-- Divider Line -->
     <div class="divider"></div>
 
-    <!-- Slideshow Section -->
-    <div class="slideshow-container">
-        <div class="mySlides fade">
-            <img src="{% static 'images/p1.jpg' %}" style="width:100%">
-        </div>
-        <div class="mySlides fade">
-            <img src="{% static 'images/p2.jpg' %}" style="width:100%">
-        </div>
-        <div class="mySlides fade">
-            <img src="{% static 'images/p3.jpg' %}" style="width:100%">
-        </div>
 
-        <!-- Navigation Buttons -->
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+<!-- Slideshow Section -->
+<div class="slideshow-container">
+    <div class="mySlides fade">
+        <img src="{% static 'images/p1.jpg' %}" style="width:100%">
     </div>
+    <div class="mySlides fade">
+        <img src="{% static 'images/p2.jpg' %}" style="width:100%">
+    </div>
+    <div class="mySlides fade">
+        <img src="{% static 'images/p3.jpg' %}" style="width:100%">
+    </div>
+
+    <!-- Navigation Buttons -->
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+<script src="script.js"></script>
 
 
 
@@ -1128,23 +1146,51 @@ header {
         setInterval(updateTime, 1000);
         updateTime(); // Initial call
 
-        let slideIndex = 0;
-        showSlides(); // Initial call
+      let slideIndex = 0;
+let isSliding = false; // Flag to control slide transition
 
-        function showSlides() {
-            let slides = document.getElementsByClassName("mySlides");
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slideIndex++;
-            if (slideIndex > slides.length) {slideIndex = 1}
-            slides[slideIndex-1].style.display = "block";
-            setTimeout(showSlides, 10000); // Change image every 10 seconds
-        }
+// Show the first slide on page load
+showSlides();
 
-        function plusSlides(n) {
-            showSlides(slideIndex += n);
-        }
+// Function to move to the next/previous slide
+function plusSlides(n) {
+    if (!isSliding) { // Check if a slide transition is already happening
+        isSliding = true; // Set flag to true during transition
+        showSlides(slideIndex += n);
+        setTimeout(() => {
+            isSliding = false; // Reset flag after transition duration
+        }, 600); // Duration should match the CSS transition time (600ms)
+    }
+}
+
+// Function to display the current slide
+function showSlides(n) {
+    let slides = document.getElementsByClassName("mySlides");
+
+    // Wrap around slide index if it goes out of bounds
+    if (n >= slides.length) {
+        slideIndex = 0;
+    }
+    if (n < 0) {
+        slideIndex = slides.length - 1;
+    }
+
+    // Hide all slides initially
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+
+    // Display the current slide
+    slides[slideIndex].style.display = "block";
+}
+
+// Optional: Automatic slideshow that moves to the next slide every 5 seconds
+setInterval(function() {
+    if (!isSliding) {
+        plusSlides(1);
+    }
+}, 5000); // Change image every 5 seconds
+
 
 
 
